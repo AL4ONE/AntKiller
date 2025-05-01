@@ -20,12 +20,21 @@ btnPlay.addEventListener('click', () => {
     gameScreen.classList.remove("hide");
     startGame();
 });
+function missClick(e) {
+    if (!e.target.classList.contains("block")) {
+        score = Math.max(0, score - 1); // biar gak minus
+        scoreEle.innerHTML = score;
+    }
+}
 
 function startGame() {
     score = 0;
     scoreEle.innerHTML = score;
     Blocks = [];
     container.innerHTML = ""; // bersihin block yang masih ada
+    
+    container.addEventListener("click", missClick);
+
 
     function spawnBlock() {
         let leftBlock = randomize(0, container.offsetWidth - 100);
@@ -86,4 +95,5 @@ function gameOver() {
     alert(`Kamu kalah! Score-mu: ${score}`);
     gameScreen.classList.add("hide");
     homeScreen.classList.remove("hide");
+    container.removeEventListener("click", missClick);
 }
