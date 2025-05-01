@@ -28,7 +28,7 @@ function startGame() {
     container.innerHTML = ""; // bersihin block yang masih ada
 
     function spawnBlock() {
-        let leftBlock = randomize(0, 400);
+        let leftBlock = randomize(0, container.style.width - "100px");
         let block = document.createElement("div");
         block.classList.add("block");
         block.style.left = leftBlock + "px";
